@@ -25,20 +25,24 @@ chmod 0777 "$UPLOAD_LOCATION" "$DB_DATA_LOCATION" "$MODEL_CACHE_LOCATION"
 cleanup() {
   docker compose --file "$TEST_ROOT/compose.yml" down --volumes --remove-orphans >/dev/null 2>&1 || true
   if [[ "${KEEP_UPGRADE_TEST_DATA:-false}" != "true" ]]; then
-    rm -rf "$TEST_ROOT"
+    if ! rm -rf "$TEST_ROOT" 2>/dev/null; then
+      sudo -n rm -rf "$TEST_ROOT" 2>/dev/null || echo "Could not remove test data at $TEST_ROOT" >&2
+    fi
   fi
+  return 0
 }
 trap cleanup EXIT
 
 on_error() {
-  local code="$?"
-  local failed_command="$BASH_COMMAND"
-  echo "::error title=Immich upgrade test failed::line $LINENO: $failed_command (exit $code)"
+  local code="$1"
+  local failed_command="$2"
+  local failed_line="$3"
+  echo "::error title=Immich upgrade test failed::line $failed_line: $failed_command (exit $code)" >&2
   docker compose --file "$TEST_ROOT/compose.yml" ps --all || true
   docker compose --file "$TEST_ROOT/compose.yml" logs --no-color --tail 80 || true
   return "$code"
 }
-trap on_error ERR
+trap 'on_error "$?" "$BASH_COMMAND" "$LINENO"' ERR
 
 cat >"$TEST_ROOT/compose.yml" <<'YAML'
 services:
