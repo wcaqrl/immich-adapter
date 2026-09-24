@@ -6,6 +6,7 @@ NEW_VERSION="${NEW_VERSION:-v3.2.2}"
 OLD_VALKEY_IMAGE="${OLD_VALKEY_IMAGE:-docker.io/valkey/valkey:9@sha256:4963247afc4cd33c7d3b2d2816b9f7f8eeebab148d29056c2ca4d7cbc966f2d9}"
 NEW_VALKEY_IMAGE="${NEW_VALKEY_IMAGE:-docker.io/valkey/valkey:9@sha256:70739f85ad2ee01a726a965584a0f94895f01b0c60b3cc8b0aeef11eaa6888cf}"
 POSTGRES_IMAGE="${POSTGRES_IMAGE:-ghcr.io/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0@sha256:bcf63357191b76a916ae5eb93464d65c07511da41e3bf7a8416db519b40b1c23}"
+export POSTGRES_IMAGE
 
 TEST_ROOT="${TEST_ROOT:-$(mktemp -d)}"
 export COMPOSE_PROJECT_NAME="immich_upgrade_${GITHUB_RUN_ID:-local}_${GITHUB_RUN_ATTEMPT:-1}"
