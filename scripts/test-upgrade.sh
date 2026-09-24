@@ -16,8 +16,11 @@ export MODEL_CACHE_LOCATION="$TEST_ROOT/model-cache"
 export DB_USERNAME=postgres
 export DB_PASSWORD=postgres
 export DB_DATABASE_NAME=immich
+export IMMICH_VERSION="$OLD_VERSION"
+export VALKEY_IMAGE="$OLD_VALKEY_IMAGE"
 
 mkdir -p "$UPLOAD_LOCATION" "$DB_DATA_LOCATION" "$MODEL_CACHE_LOCATION"
+chmod 0777 "$UPLOAD_LOCATION" "$DB_DATA_LOCATION" "$MODEL_CACHE_LOCATION"
 
 cleanup() {
   docker compose --file "$TEST_ROOT/compose.yml" down --volumes --remove-orphans >/dev/null 2>&1 || true
@@ -26,6 +29,16 @@ cleanup() {
   fi
 }
 trap cleanup EXIT
+
+on_error() {
+  local code="$?"
+  local failed_command="$BASH_COMMAND"
+  echo "::error title=Immich upgrade test failed::line $LINENO: $failed_command (exit $code)"
+  docker compose --file "$TEST_ROOT/compose.yml" ps --all || true
+  docker compose --file "$TEST_ROOT/compose.yml" logs --no-color --tail 80 || true
+  return "$code"
+}
+trap on_error ERR
 
 cat >"$TEST_ROOT/compose.yml" <<'YAML'
 services:
