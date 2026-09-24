@@ -1,0 +1,27 @@
+name: Test Immich data upgrade
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/upgrade-test.yml
+      - scripts/test-upgrade.sh
+      - lzc-manifest.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: immich-upgrade-test-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  upgrade:
+    name: 3.0.3 → 3.2.2
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v5
+      - name: Reuse persistent data across the real four-container upgrade
+        run: ./scripts/test-upgrade.sh

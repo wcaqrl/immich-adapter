@@ -1,0 +1,34 @@
+name: Update Immich for LazyCat
+run-name: ${{ github.event_name == 'push' && 'Immich → LazyCat [仅检查]' || (github.event_name == 'workflow_dispatch' && inputs.dry-run) && 'Immich → LazyCat [仅检查]' || 'Immich → LazyCat [转存、打包并送审]' }}
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/update.yml
+      - lazycat-action.yml
+      - lzc-build.yml
+      - lzc-manifest.yml
+      - package.yml
+  schedule:
+    # 03:37 UTC = 11:37 China Standard Time.
+    - cron: '37 3 * * *'
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: 勾选＝仅检查；取消勾选＝转存镜像、构建 LPK 并提交审核。
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update:
+    uses: wcaqrl/lazycat-action/.github/workflows/lazycat.yml@v1
+    with:
+      config: lazycat-action.yml
+      operation: auto
+      dry-run: ${{ github.event_name == 'push' || inputs.dry-run || false }}
+    secrets: inherit

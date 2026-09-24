@@ -1,0 +1,5 @@
+dist/
+lpk/
+.lazycat-action/
+*.lpk
+

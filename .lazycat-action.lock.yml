@@ -1,0 +1,82 @@
+version: 1
+source:
+    kind: git
+    version: 3.2.2
+    ref: refs/tags/v3.2.2
+    revision: 60b51cb3bc909e72fe963f4dfb1947515cb9ab3b
+    tag: v3.2.2
+fingerprint: sha256:e321af61f14f9a2e6d4e5195c9f4d100753deece141a1cf3b6ad8f7cacdbf087
+status: packaged
+images:
+    - id: immich-server
+      source_ref: ghcr.io/immich-app/immich-server:v3.2.2@sha256:6b0eaf8cfea6d4d6f86a45dfd0c9e3b068ed4493d8b7fa1efeca4cc87792fbe8
+      source_digest: sha256:6b0eaf8cfea6d4d6f86a45dfd0c9e3b068ed4493d8b7fa1efeca4cc87792fbe8
+      runtime_ref: registry.lazycat.cloud/peter/immich-app/immich-server:dcc61dadfa912e83
+    - id: machine-learning
+      source_ref: ghcr.io/immich-app/immich-machine-learning:v3.2.2@sha256:390453a571ca73b563cc3d9a12a37a4d71217b12608de72f26884f5e2ebc4896
+      source_digest: sha256:390453a571ca73b563cc3d9a12a37a4d71217b12608de72f26884f5e2ebc4896
+      runtime_ref: registry.lazycat.cloud/peter/immich-app/immich-machine-learning:c9ecac1bd7490efe
+    - id: redis
+      source_ref: docker.io/valkey/valkey:9@sha256:70739f85ad2ee01a726a965584a0f94895f01b0c60b3cc8b0aeef11eaa6888cf
+      source_digest: sha256:c7f03d95d897f97eef7ec2d4a6a1e2c0cbe62a36a56b00f304aa536cbe3ec9c1
+      runtime_ref: registry.lazycat.cloud/peter/valkey/valkey:a5138112a2382a4c
+    - id: postgres
+      source_ref: ghcr.io/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0@sha256:bcf63357191b76a916ae5eb93464d65c07511da41e3bf7a8416db519b40b1c23
+      source_digest: sha256:b1d33572a9a0634aa6d344077467ad32847812a37fa3859f702952cba22a2f55
+      runtime_ref: registry.lazycat.cloud/peter/immich-app/postgres:5cac45a00a781f67
+application:
+    package: dev.libr.immich
+    version: 3.2.2
+    lpk_sha256: c0a6a1e4f39124e1659a00ad15cee7f73762ecc29dd77041219d3c013a127968
+    changelog: |-
+        Upstream 3.2.2 (since 3.0.3)
+        - chore: version v3.2.2
+        - fix: skip faces of other users when reassigning faces (#31586)
+        - chore: version v3.2.1
+        - feat: people merge improvements (#31555)
+        - fix: metadata extraction of faces (#31554)
+        - fix: reset shouldChangePassword on password change (#31553)
+        - fix: put back search untagged button (#31546)
+        - fix: feature face update ignores soft-deleted faces (#31545)
+        - fix(web): show full path on hover in duplicates utility (#31491)
+        - fix: face label clipping (again) (#31543)
+        - fix: honor memory filters on explore page (#31542)
+        - fix(web): scroll timeline to top when navigating without a scroll target (#31477)
+        - fix: sync client disconnect (#31463)
+        - fix(web): preserve search type (#31462)
+        - fix(web): change "View asset owners" to "Hide asset owners" when enabled (#31460)
+        - fix(web): asset remains in timeline after archive (#31459)
+        - fix(server): vacuum after migrations, concurrent reindex (#31446)
+        - fix: show partner assets on people page (#31449)
+        - chore: version v3.2.0
+        - fix(mobile): make shared link download toggle depend on metadata toggle (#31382)
+        - fix(mobile): hide negative age (#31381)
+        - fix(web): word-wrap long album names (#31379)
+        - fix(web): use RTL-friendly layout for people panel buttons (#31378)
+        - fix(deps): update dependency maplibre-gl to v6 [security] (#31375)
+        - fix(server): live photo transcode visibility (#31374)
+        - fix: memory page navigation (#31368)
+        - chore: version v3.2.0-rc.3
+        - fix(mobile): refresh the memory lane after resume (#31260)
+        - fix(web): partner sharing timeline (#31252)
+        - fix(mobile): prevent inner mutability on Freezed classes (#31251)
+        - chore(mobile): log app resume and pause (#31224)
+        - fix: face detection of edited assets (#31243)
+        - fix(mobile): switch to new OpenAPI int in RotateParameters (#31248)
+        - fix(web): album date range formatting (#31238)
+        - fix: incorrect edit's openapi type (#31233)
+        - fix: don't force builds on release-base PRs (#31231)
+        - chore: require number format (#31226)
+        - fix: fdroid link (#31221)
+        - fix(server): never unlink an untracked-file path that an asset now references (#31194)
+        - fix: add discussions perm to release publish token (#31193)
+        - chore(deps): update github-actions (#31192)
+        - chore: version v3.2.0-rc.2
+        - fix: open an announcement discussion for each release line (#31163)
+        - fix(mobile): refresh server info when the websocket connects (#31155)
+        - fix(ml): read CLIP model configs as UTF-8 (#31152)
+        - fix(web): interaction with some filter elements closes the search panel (#31160)
+        - fix(mobile): handle transient loading states for map timelines (#31153)
+        - fix(mobile): keep the original filename when sharing downloaded assets (#31154)
+        - chore: tune map icon size (#31150)
+        - fix(server): allow an empty assetIds array when creating an album shared link (#31151)

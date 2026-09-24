@@ -1,0 +1,72 @@
+version: 2
+
+project:
+  root: .
+  build_config: lzc-build.yml
+  package_file: package.yml
+  output: dist/dev.libr.immich.lpk
+  target_arch: amd64
+
+source:
+  kind: git
+  url: https://github.com/immich-app/immich.git
+  select:
+    strategy: semver-tag
+    tag_regex: '^v[0-9]+\.[0-9]+\.[0-9]+$'
+    exclude_regex: '(?i)(alpha|beta|rc)'
+
+changelog:
+  git_url: https://github.com/immich-app/immich.git
+  max_commits: 50
+
+state:
+  file: .lazycat-action.lock.yml
+
+update:
+  strategy: publish
+  allow_downgrade: false
+
+build:
+  run_buildscript: false
+  prepare:
+    mode: images
+
+images:
+  - id: immich-server
+    target: service
+    service: immich
+    source: ghcr.io/immich-app/immich-server:{tag}
+    delivery:
+      mode: lazycat
+      copy_source: ghcr.nju.edu.cn/immich-app/immich-server:{tag}
+  - id: machine-learning
+    target: service
+    service: machine-learning
+    source: ghcr.io/immich-app/immich-machine-learning:{tag}
+    delivery:
+      mode: lazycat
+      copy_source: ghcr.nju.edu.cn/immich-app/immich-machine-learning:{tag}
+  - id: redis
+    target: service
+    service: redis
+    source: docker.io/valkey/valkey:9@sha256:70739f85ad2ee01a726a965584a0f94895f01b0c60b3cc8b0aeef11eaa6888cf
+    delivery:
+      mode: lazycat
+  - id: postgres
+    target: service
+    service: postgres
+    source: ghcr.io/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0@sha256:bcf63357191b76a916ae5eb93464d65c07511da41e3bf7a8416db519b40b1c23
+    delivery:
+      mode: lazycat
+
+stores:
+  official:
+    enabled: true
+    skip_if_version_exists: true
+    create_if_missing: false
+    changelog_locales: [zh, en]
+    retry:
+      enabled: true
+      max_attempts: 5
+      initial_delay: 2s
+      max_delay: 30s

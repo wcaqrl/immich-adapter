@@ -1,0 +1,19 @@
+package: dev.libr.immich
+version: 3.2.2
+name: Immich
+description: Self-hosted photo and video management solution
+homepage: https://immich.app/
+author: cocdeshijie
+license: AGPL-3.0
+locales:
+  zh:
+    name: Immich
+    description: 自托管的照片和视频管理解决方案
+  en:
+    name: Immich
+    description: Self-hosted photo and video management solution
+permissions:
+  required:
+    - net.internet
+  optional:
+    - device.dri.render

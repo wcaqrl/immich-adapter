@@ -1,0 +1,47 @@
+application:
+  subdomain: immich
+  background_task: true
+  multi_instance: false
+  gpu_accel: true
+  kvm_accel: false
+  usb_accel: false
+  public_path:
+    - /
+  routes:
+    - /=http://immich.dev.libr.immich.lzcapp:2283/
+services:
+  immich:
+    # upstream: ghcr.io/immich-app/immich-server:v3.2.2@sha256:6b0eaf8cfea6d4d6f86a45dfd0c9e3b068ed4493d8b7fa1efeca4cc87792fbe8
+    image: registry.lazycat.cloud/peter/immich-app/immich-server:dcc61dadfa912e83
+    environment:
+      - TZ=Asia/Shanghai
+      - DB_HOSTNAME=postgres.dev.libr.immich.lzcapp
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=postgres
+      - DB_DATABASE_NAME=immich
+      - REDIS_HOSTNAME=redis.dev.libr.immich.lzcapp
+      - IMMICH_MACHINE_LEARNING_URL=http://machine-learning.dev.libr.immich.lzcapp:3003
+    binds:
+      - /lzcapp/var/photos:/data
+  machine-learning:
+    # upstream: ghcr.io/immich-app/immich-machine-learning:v3.2.2@sha256:390453a571ca73b563cc3d9a12a37a4d71217b12608de72f26884f5e2ebc4896
+    image: registry.lazycat.cloud/peter/immich-app/immich-machine-learning:c9ecac1bd7490efe
+    environment:
+      - MACHINE_LEARNING_WORKERS=1
+      - MACHINE_LEARNING_WORKER_TIMEOUT=120
+      - HF_ENDPOINT=https://hf-mirror.com
+    binds:
+      - /lzcapp/var/machine:/cache
+  redis:
+    # upstream: docker.io/valkey/valkey:9@sha256:70739f85ad2ee01a726a965584a0f94895f01b0c60b3cc8b0aeef11eaa6888cf
+    image: registry.lazycat.cloud/peter/valkey/valkey:a5138112a2382a4c
+  postgres:
+    # upstream: ghcr.io/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0@sha256:bcf63357191b76a916ae5eb93464d65c07511da41e3bf7a8416db519b40b1c23
+    image: registry.lazycat.cloud/peter/immich-app/postgres:5cac45a00a781f67
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=immich
+      - POSTGRES_INITDB_ARGS=--data-checksums
+    binds:
+      - /lzcapp/var/data:/var/lib/postgresql/data
