@@ -64,6 +64,7 @@ stores:
   official:
     enabled: true
     skip_if_version_exists: true
+    continue_if_newer_version: true
     create_if_missing: false
     changelog_locales: [zh, en]
     retry:
