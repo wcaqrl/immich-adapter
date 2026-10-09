@@ -6,7 +6,7 @@ source:
     revision: db6e11ecc851228aec9c525abb0ee026d1f5055e
     tag: v3.3.1
 fingerprint: sha256:ed127ecc2ffe5fae8a77199bf5a60c70d34ef450fe924c16ebfb774f252cd814
-status: packaged
+status: submitted
 images:
     - id: immich-server
       source_ref: ghcr.io/immich-app/immich-server:v3.3.1@sha256:96c6ec77cdea5a3c90539b81baf8c276b834deb595b1603c4aefc1903ab6a05b
