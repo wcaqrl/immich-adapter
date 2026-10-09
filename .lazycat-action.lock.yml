@@ -1,21 +1,21 @@
 version: 1
 source:
     kind: git
-    version: 3.2.4
-    ref: refs/tags/v3.2.4
-    revision: db355f79d910bbfc6378117ed10868493c97b922
-    tag: v3.2.4
-fingerprint: sha256:93b516ff08f0b42023606d77a43f9ec68c59338f203068d7f841b73d34b2b428
-status: submitted
+    version: 3.3.1
+    ref: refs/tags/v3.3.1
+    revision: db6e11ecc851228aec9c525abb0ee026d1f5055e
+    tag: v3.3.1
+fingerprint: sha256:ed127ecc2ffe5fae8a77199bf5a60c70d34ef450fe924c16ebfb774f252cd814
+status: packaged
 images:
     - id: immich-server
-      source_ref: ghcr.io/immich-app/immich-server:v3.2.4@sha256:04225d8995a221de3b73a6131fe25eed14448830e54998f30877a70f48c6ac13
-      source_digest: sha256:04225d8995a221de3b73a6131fe25eed14448830e54998f30877a70f48c6ac13
-      runtime_ref: registry.lazycat.cloud/peter/immich-app/immich-server:71ca94212310fa74
+      source_ref: ghcr.io/immich-app/immich-server:v3.3.1@sha256:96c6ec77cdea5a3c90539b81baf8c276b834deb595b1603c4aefc1903ab6a05b
+      source_digest: sha256:96c6ec77cdea5a3c90539b81baf8c276b834deb595b1603c4aefc1903ab6a05b
+      runtime_ref: registry.lazycat.cloud/peter/immich-app/immich-server:6f67763f8e7482e4
     - id: machine-learning
-      source_ref: ghcr.io/immich-app/immich-machine-learning:v3.2.4@sha256:7909f11a1ce217ed660afb02545f26e4adf72a5282633db436972abdfa026d20
-      source_digest: sha256:7909f11a1ce217ed660afb02545f26e4adf72a5282633db436972abdfa026d20
-      runtime_ref: registry.lazycat.cloud/peter/immich-app/immich-machine-learning:649ae5ce4c22c3fb
+      source_ref: ghcr.io/immich-app/immich-machine-learning:v3.3.1@sha256:df34e834183d6fe179877fe4f4822338bc9a1d9fc776a3c40966f17a09b0d30a
+      source_digest: sha256:df34e834183d6fe179877fe4f4822338bc9a1d9fc776a3c40966f17a09b0d30a
+      runtime_ref: registry.lazycat.cloud/peter/immich-app/immich-machine-learning:f019d4ee771f6bcb
     - id: redis
       source_ref: docker.io/valkey/valkey:9@sha256:70739f85ad2ee01a726a965584a0f94895f01b0c60b3cc8b0aeef11eaa6888cf
       source_digest: sha256:c7f03d95d897f97eef7ec2d4a6a1e2c0cbe62a36a56b00f304aa536cbe3ec9c1
@@ -26,11 +26,57 @@ images:
       runtime_ref: registry.lazycat.cloud/peter/immich-app/postgres:bacbe7b332150178
 application:
     package: dev.libr.immich
-    version: 3.2.4
-    lpk_sha256: 358fa143ca458a217b2cc8fc472f968552471cc61ae2a25c3a2a71f6c986af28
+    version: 3.3.1
+    lpk_sha256: 82c85f5493c1c2ef1d621b1d71ef365898ebd8d38569b18dec45a67cad7d2e40
     changelog: |-
-        Upstream 3.2.4 (since 3.2.2)
-        - chore: version v3.2.4
-        - chore(deps): update base-image to v202609281550 (#31854)
-        - chore: version v3.2.3
-        - fix(mobile): sync status page goes blank when the counts query fails (#31644)
+        Upstream 3.3.1 (since 3.2.4)
+        - chore: version v3.3.1
+        - docs: Add MACHINE_LEARNING_MODEL_REVISION variable to docs (#32247)
+        - chore(web): update translations (#32246)
+        - fix: show date on memories page (#32245)
+        - fix: run workflow steps in their configured order (#32241)
+        - feat: shared person indicator (#32238)
+        - fix: include unamed people in otherPeople (#32239)
+        - fix(mobile): prevent rapid toggling and rerendering of cells (#32236)
+        - fix: clarify people sharing does not share assets (#32234)
+        - chore: mark people users endpoints as beta (#32233)
+        - docs: document persistent QNAP database storage (#32229)
+        - fix: include partner shared assets for people even without showInTimeline (#32226)
+        - feat: custom release notes (#32191)
+        - fix(server): read ISO values above 65535 (#32183)
+        - fix(mobile): keep memories full screen while swiping (#32174)
+        - chore: version v3.3.0
+        - fix(web): show face name label above box when it would be hidden (#32168)
+        - fix(ml): incorrect outputs on alchemist and battlemage (#32148)
+        - fix: memories mobile sync for older clients (#32167)
+        - fix: memory upcoming query (#32166)
+        - feat: birthday memory on mobile (#32165)
+        - chore: milder birthday memory text (#32163)
+        - fix(web): don't swallow Escape when person name editor is closed (#32161)
+        - chore(web): update translations (#32022)
+        - fix: allow translation backports (#32153)
+        - feat(ml): ppocr v6 (#32151)
+        - fix: person without assets (#32117)
+        - fix: select hidden people (#32116)
+        - docs: add QNAP install guide (#32105)
+        - fix(web): album reactivity (#32111)
+        - fix: people page search (#32108)
+        - fix: strip workflow step ids from user-facing actions (#32106)
+        - fix: bounding box label clipping due to reactivity issue (#32107)
+        - fix(web): no trash actions when trash is empty (#32104)
+        - fix: stale memory cover (#32101)
+        - fix(server): don't select an audio stream ffprobe could not identify (#32062)
+        - chore: version v3.3.0-rc.2
+        - chore(deps): update dependency sharp to v0.35.4 [security] (#32032)
+        - chore(deps): update base-image to v202610021601 (#32031)
+        - fix: improper filename sanitizing (#32028)
+        - fix: assetTagFilter any matching (#32027)
+        - fix: metadata extraction for media streams with unknown profile (#32023)
+        - fix(cli): sidecar precedence (#32021)
+        - fix(ml): upgrade to openvino 2026.4.1 (#32020)
+        - feat(web): default to date storage template during onboarding (#32018)
+        - feat(web): add shortcut to remove assets from an album (#32015)
+        - fix(mobile): image jumps when full-res image loads during pinch or zoom animation (#32011)
+        - fix(mobile): don't re-upload a photo the server already has (#32004)
+        - fix(mobile): don't start the foreground backup in iOS background launches (#32002)
+        - fix(mobile): make the iOS background batch wait for its remote sync (#32003)
