@@ -19,6 +19,10 @@ on:
         description: 勾选＝仅检查；取消勾选＝转存镜像、构建 LPK 并提交审核。
         type: boolean
         default: true
+      retry-rejected:
+        description: 修复适配配置后，重新打包被拒绝的源版本并提升应用版本。须取消仅检查。
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -31,4 +35,5 @@ jobs:
       config: lazycat-action.yml
       operation: auto
       dry-run: ${{ github.event_name == 'push' || inputs.dry-run || false }}
+      retry-rejected: ${{ github.event_name == 'workflow_dispatch' && inputs.retry-rejected || false }}
     secrets: inherit

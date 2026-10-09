@@ -19,6 +19,8 @@
 
 推送配置只进行 dry-run。正式更新可在 **Actions → Update Immich for LazyCat → Run workflow** 中取消勾选 dry-run，或等待每日定时任务。
 
+打包后，官方商店送审和本仓库 GitHub Release 并行运行。Release 的 `v<应用版本>` 下提供 `dev.libr.immich-v<应用版本>.lpk`，不附带校验文件；Release 失败只显示警告，不阻止送审。状态锁自动记录审核 ID、状态和拒绝原因，同一上游版本不会因拒绝而被定时任务重复提交。修复适配配置后，可在手动运行时取消 `dry-run` 并勾选 `retry-rejected`，将同一源版本打包为新的应用 patch 版本后送审。工作流继续引用统一的 `@v1`。
+
 本地只读检查：
 
 ```bash
