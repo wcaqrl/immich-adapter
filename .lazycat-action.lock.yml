@@ -1,21 +1,21 @@
 version: 2
 source:
     kind: git
-    version: 3.3.5
-    ref: refs/tags/v3.3.5
-    revision: 8303cb117e197c700332b33b61b45314c9cc5bb4
-    tag: v3.3.5
-fingerprint: sha256:8150d9dde7e02016e1e00182291ceb150c9146a9a02ef98f6fe097ffc8d2bf27
-status: submitted
+    version: 3.3.6
+    ref: refs/tags/v3.3.6
+    revision: 587f549f46f1cd1822a06e16dcccecef04ea4565
+    tag: v3.3.6
+fingerprint: sha256:623a94b3821617e26d3c6d8007f9b38512cf31be1ba65e2a2bb0b58b2ac0cecb
+status: packaged
 images:
     - id: immich-server
-      source_ref: ghcr.io/immich-app/immich-server:v3.3.5@sha256:1ab81816384ce8e782fdbdb2b7703ab68fd12442bc311a53118dc0d74c2ced24
-      source_digest: sha256:1ab81816384ce8e782fdbdb2b7703ab68fd12442bc311a53118dc0d74c2ced24
-      runtime_ref: registry.lazycat.cloud/peter/immich-app/immich-server:791829e4ec67b9b2
+      source_ref: ghcr.io/immich-app/immich-server:v3.3.6@sha256:c0a8e008ad9befe8af0e3a515e3b3661e98d38c37eadb6efee18a6d5098136c1
+      source_digest: sha256:c0a8e008ad9befe8af0e3a515e3b3661e98d38c37eadb6efee18a6d5098136c1
+      runtime_ref: registry.lazycat.cloud/peter/immich-app/immich-server:9b0b24c36141adab
     - id: machine-learning
-      source_ref: ghcr.io/immich-app/immich-machine-learning:v3.3.5@sha256:1270449e47e1fcd703661c4d728b7904d89aacfb715662c26116cc9dd73f266b
-      source_digest: sha256:1270449e47e1fcd703661c4d728b7904d89aacfb715662c26116cc9dd73f266b
-      runtime_ref: registry.lazycat.cloud/peter/immich-app/immich-machine-learning:1b24074bfa58a216
+      source_ref: ghcr.io/immich-app/immich-machine-learning:v3.3.6@sha256:b7d8e0cb18d3f305a63d79d69bbeb99a9d35031910e6ff5912e49bf678fd476e
+      source_digest: sha256:b7d8e0cb18d3f305a63d79d69bbeb99a9d35031910e6ff5912e49bf678fd476e
+      runtime_ref: registry.lazycat.cloud/peter/immich-app/immich-machine-learning:25ded3e2f0eac09a
     - id: redis
       source_ref: docker.io/valkey/valkey:9@sha256:70739f85ad2ee01a726a965584a0f94895f01b0c60b3cc8b0aeef11eaa6888cf
       source_digest: sha256:c7f03d95d897f97eef7ec2d4a6a1e2c0cbe62a36a56b00f304aa536cbe3ec9c1
@@ -26,18 +26,13 @@ images:
       runtime_ref: registry.lazycat.cloud/peter/immich-app/postgres:bacbe7b332150178
 application:
     package: dev.libr.immich
-    version: 3.3.5
-    lpk_sha256: 3de505ee5cb88f116bd8acf0cf36e1dae24c9a7e1d3f120d3c7a076a992ea38d
+    version: 3.3.6
+    lpk_sha256: 3e5945c9147304f3a0970f9eb7757919c7a0659c01f87bb7b65e49f339c1c1b4
     changelog: |-
-        Upstream 3.3.5 (since 3.3.4)
-        - chore: version v3.3.5
-        - chore(deps): update base-image to v202610211607 (#32647)
-        - chore(deps): update node.js to v24.22.1 (#32643)
-        - chore(deps): update python docker digests (#32640)
-        - chore(deps): update node.js to v24.22.1 (#32642)
-        - chore(deps): update dependency certifi to v2026.10.19 (#32641)
-        - chore(mobile): use Xcode and iOS 27.1 SDK for CI builds (#32637)
-packaged_at: 2026-10-22T09:06:36.382695892Z
+        Upstream 3.3.6 (since 3.3.5)
+        - chore: version v3.3.6
+        - fix(ml): disable onnxruntime telemetry (#32958)
+packaged_at: 2026-11-05T11:33:23.977651898Z
 reviews:
     - id: 20112
       source:
