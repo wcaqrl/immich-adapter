@@ -100,7 +100,8 @@ reviews:
       fingerprint: sha256:623a94b3821617e26d3c6d8007f9b38512cf31be1ba65e2a2bb0b58b2ac0cecb
       application_version: 3.3.6
       lpk_sha256: 3e5945c9147304f3a0970f9eb7757919c7a0659c01f87bb7b65e49f339c1c1b4
-      status: waiting
+      status: rejected
+      reason: 启动失败
       created_at: 2026-11-05T11:33:44.845Z
       submitted_at: 2026-11-05T11:33:44.985824612Z
-      checked_at: 2026-11-05T11:33:44.985825293Z
+      checked_at: 2026-11-06T11:26:21.005848606Z
