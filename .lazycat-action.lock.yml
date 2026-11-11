@@ -1,21 +1,21 @@
 version: 2
 source:
     kind: git
-    version: 3.3.6
-    ref: refs/tags/v3.3.6
-    revision: 587f549f46f1cd1822a06e16dcccecef04ea4565
-    tag: v3.3.6
-fingerprint: sha256:623a94b3821617e26d3c6d8007f9b38512cf31be1ba65e2a2bb0b58b2ac0cecb
-status: submitted
+    version: 3.4.0
+    ref: refs/tags/v3.4.0
+    revision: 0715bcf8dab4b91118d6184479e2be2767ef8294
+    tag: v3.4.0
+fingerprint: sha256:1933213ceab1879a44c64070511c14f7af99dfb9ab5e8fe19b47dea79707834e
+status: packaged
 images:
     - id: immich-server
-      source_ref: ghcr.io/immich-app/immich-server:v3.3.6@sha256:c0a8e008ad9befe8af0e3a515e3b3661e98d38c37eadb6efee18a6d5098136c1
-      source_digest: sha256:c0a8e008ad9befe8af0e3a515e3b3661e98d38c37eadb6efee18a6d5098136c1
-      runtime_ref: registry.lazycat.cloud/peter/immich-app/immich-server:9b0b24c36141adab
+      source_ref: ghcr.io/immich-app/immich-server:v3.4.0@sha256:8656fe4c1d096ff5de233082e0620b5aa6a921cff6d33505c9dde4a01a767b5e
+      source_digest: sha256:8656fe4c1d096ff5de233082e0620b5aa6a921cff6d33505c9dde4a01a767b5e
+      runtime_ref: registry.lazycat.cloud/peter/immich-app/immich-server:1d5525fa8ecb77ae
     - id: machine-learning
-      source_ref: ghcr.io/immich-app/immich-machine-learning:v3.3.6@sha256:b7d8e0cb18d3f305a63d79d69bbeb99a9d35031910e6ff5912e49bf678fd476e
-      source_digest: sha256:b7d8e0cb18d3f305a63d79d69bbeb99a9d35031910e6ff5912e49bf678fd476e
-      runtime_ref: registry.lazycat.cloud/peter/immich-app/immich-machine-learning:25ded3e2f0eac09a
+      source_ref: ghcr.io/immich-app/immich-machine-learning:v3.4.0@sha256:0de2115c899b8c28a4348860c6ea0d24b7bb4622c85dec4f42481ec7d866e98b
+      source_digest: sha256:0de2115c899b8c28a4348860c6ea0d24b7bb4622c85dec4f42481ec7d866e98b
+      runtime_ref: registry.lazycat.cloud/peter/immich-app/immich-machine-learning:7486e485a25c0b35
     - id: redis
       source_ref: docker.io/valkey/valkey:9@sha256:70739f85ad2ee01a726a965584a0f94895f01b0c60b3cc8b0aeef11eaa6888cf
       source_digest: sha256:c7f03d95d897f97eef7ec2d4a6a1e2c0cbe62a36a56b00f304aa536cbe3ec9c1
@@ -26,13 +26,61 @@ images:
       runtime_ref: registry.lazycat.cloud/peter/immich-app/postgres:bacbe7b332150178
 application:
     package: dev.libr.immich
-    version: 3.3.6
-    lpk_sha256: 3e5945c9147304f3a0970f9eb7757919c7a0659c01f87bb7b65e49f339c1c1b4
+    version: 3.4.0
+    lpk_sha256: 16871cf2eff4f6de8546f38716c0ef952b1b7e6bbce459768eafb47ede381a9c
     changelog: |-
-        Upstream 3.3.6 (since 3.3.5)
-        - chore: version v3.3.6
-        - fix(ml): disable onnxruntime telemetry (#32958)
-packaged_at: 2026-11-05T11:33:23.977651898Z
+        Upstream 3.4.0 (since 3.3.6)
+        - chore: version v3.4.0
+        - fix(server): bump backups to 1.14.0 to enable polling login (#33137)
+        - fix(web): stale caches (#33136)
+        - fix(server): disable passkeys (#33133)
+        - fix(mobile): update sqlite_async to 0.14.8 (#33132)
+        - fix: truncate filename in detail panel (#33130)
+        - fix(web): more reactivity issues around `@const` (#33129)
+        - fix: download archive filename handling for edited assets (#33128)
+        - fix(web): handle album users being empty for shared links (#33127)
+        - fix(mobile): don't block startup when offline (#33101)
+        - chore: version v3.4.0-rc.3
+        - feat(server): use Immich database for backups state (#33037)
+        - fix: web import ordering (#33011)
+        - chore: migrate server import sorting back to prettier (#33004)
+        - refactor: web tests (#33008)
+        - feat(mobile): passkeys (#33005)
+        - fix(ml): include the error when a model fails to load (#33003)
+        - chore(android): Build Flutter config before Fastlane builds (#33002)
+        - feat: keyboard shortcuts for person page (#32992)
+        - chore: version v3.4.0-rc.2
+        - fix(mobile): log out before resetting the local database (#32982)
+        - fix: asset viewer reactivity (#32979)
+        - fix(web): smoother asset viewer gradients (#32977)
+        - chore(web): refactor help and support modal (#32976)
+        - fix(web): scroll memory (#32975)
+        - fix(server): validate motion photo video range before extraction (#32972)
+        - fix(server): read only valid ISO values (#32971)
+        - fix(ml): disable onnxruntime telemetry (#32959)
+        - fix: medium test flake (#32950)
+        - fix: rate limits (#32945)
+        - fix: people page websockets (#32942)
+        - fix: web error handler (#32941)
+        - fix: backups codegen (#32936)
+        - fix: oauth regressions (#32937)
+        - feat: web medium tests (#32879)
+        - fix: web worker import (#32877)
+        - fix: remove asset from album doesn't resize the timeline (#32875)
+        - fix: font loading (#32874)
+        - fix(server): keep ocr search text after edits and thumbnail regeneration (#32842)
+        - fix(mobile): show 10-bit heic and avif originals on ios (#32841)
+        - chore: version v3.4.0-rc.1
+        - feat: futo backups 1.12.1 with restic's parallel scan (#32836)
+        - fix(ci): release notes script (#32837)
+        - fix(server): single library exclusion matcher (#32834)
+        - fix(server): keep user motion files on embedded motion replace (#32833)
+        - fix(server): live photo match library (#32832)
+        - fix(server): compress database backups on 75% of the cores, up to 32 (#32828)
+        - fix: breaking changes (#32826)
+        - chore: version v3.4.0-rc.0
+        - chore(web): update translations (#32256)
+packaged_at: 2026-11-11T11:34:58.828110326Z
 reviews:
     - id: 20112
       source:
