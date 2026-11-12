@@ -1,21 +1,21 @@
 version: 2
 source:
     kind: git
-    version: 3.4.0
-    ref: refs/tags/v3.4.0
-    revision: 0715bcf8dab4b91118d6184479e2be2767ef8294
-    tag: v3.4.0
-fingerprint: sha256:1933213ceab1879a44c64070511c14f7af99dfb9ab5e8fe19b47dea79707834e
-status: submitted
+    version: 3.4.1
+    ref: refs/tags/v3.4.1
+    revision: 22b95194c80a2f2e6201093916b6c8c3d6d271dd
+    tag: v3.4.1
+fingerprint: sha256:778c5e77b88c7f6b42ecb778df7f3c42c802fb6fd406ea1009ac6c4354f067e7
+status: packaged
 images:
     - id: immich-server
-      source_ref: ghcr.io/immich-app/immich-server:v3.4.0@sha256:8656fe4c1d096ff5de233082e0620b5aa6a921cff6d33505c9dde4a01a767b5e
-      source_digest: sha256:8656fe4c1d096ff5de233082e0620b5aa6a921cff6d33505c9dde4a01a767b5e
-      runtime_ref: registry.lazycat.cloud/peter/immich-app/immich-server:1d5525fa8ecb77ae
+      source_ref: ghcr.io/immich-app/immich-server:v3.4.1@sha256:4351dd621899ecc8ed317ae87cdcaeb968ec8ba4f9d8053d913a73eb6f6dd7c2
+      source_digest: sha256:4351dd621899ecc8ed317ae87cdcaeb968ec8ba4f9d8053d913a73eb6f6dd7c2
+      runtime_ref: registry.lazycat.cloud/peter/immich-app/immich-server:258f0488e7387357
     - id: machine-learning
-      source_ref: ghcr.io/immich-app/immich-machine-learning:v3.4.0@sha256:0de2115c899b8c28a4348860c6ea0d24b7bb4622c85dec4f42481ec7d866e98b
-      source_digest: sha256:0de2115c899b8c28a4348860c6ea0d24b7bb4622c85dec4f42481ec7d866e98b
-      runtime_ref: registry.lazycat.cloud/peter/immich-app/immich-machine-learning:7486e485a25c0b35
+      source_ref: ghcr.io/immich-app/immich-machine-learning:v3.4.1@sha256:0fd58356ac250e2fc306f89a56a431181d708677d63ba2867c8b205484856652
+      source_digest: sha256:0fd58356ac250e2fc306f89a56a431181d708677d63ba2867c8b205484856652
+      runtime_ref: registry.lazycat.cloud/peter/immich-app/immich-machine-learning:000de7a937afb77d
     - id: redis
       source_ref: docker.io/valkey/valkey:9@sha256:70739f85ad2ee01a726a965584a0f94895f01b0c60b3cc8b0aeef11eaa6888cf
       source_digest: sha256:c7f03d95d897f97eef7ec2d4a6a1e2c0cbe62a36a56b00f304aa536cbe3ec9c1
@@ -26,61 +26,21 @@ images:
       runtime_ref: registry.lazycat.cloud/peter/immich-app/postgres:bacbe7b332150178
 application:
     package: dev.libr.immich
-    version: 3.4.0
-    lpk_sha256: 16871cf2eff4f6de8546f38716c0ef952b1b7e6bbce459768eafb47ede381a9c
+    version: 3.4.1
+    lpk_sha256: d551cea880e15a6a58a3c425a1379ab8aedea3afbace645d251f8a7644453c27
     changelog: |-
-        Upstream 3.4.0 (since 3.3.6)
-        - chore: version v3.4.0
-        - fix(server): bump backups to 1.14.0 to enable polling login (#33137)
-        - fix(web): stale caches (#33136)
-        - fix(server): disable passkeys (#33133)
-        - fix(mobile): update sqlite_async to 0.14.8 (#33132)
-        - fix: truncate filename in detail panel (#33130)
-        - fix(web): more reactivity issues around `@const` (#33129)
-        - fix: download archive filename handling for edited assets (#33128)
-        - fix(web): handle album users being empty for shared links (#33127)
-        - fix(mobile): don't block startup when offline (#33101)
-        - chore: version v3.4.0-rc.3
-        - feat(server): use Immich database for backups state (#33037)
-        - fix: web import ordering (#33011)
-        - chore: migrate server import sorting back to prettier (#33004)
-        - refactor: web tests (#33008)
-        - feat(mobile): passkeys (#33005)
-        - fix(ml): include the error when a model fails to load (#33003)
-        - chore(android): Build Flutter config before Fastlane builds (#33002)
-        - feat: keyboard shortcuts for person page (#32992)
-        - chore: version v3.4.0-rc.2
-        - fix(mobile): log out before resetting the local database (#32982)
-        - fix: asset viewer reactivity (#32979)
-        - fix(web): smoother asset viewer gradients (#32977)
-        - chore(web): refactor help and support modal (#32976)
-        - fix(web): scroll memory (#32975)
-        - fix(server): validate motion photo video range before extraction (#32972)
-        - fix(server): read only valid ISO values (#32971)
-        - fix(ml): disable onnxruntime telemetry (#32959)
-        - fix: medium test flake (#32950)
-        - fix: rate limits (#32945)
-        - fix: people page websockets (#32942)
-        - fix: web error handler (#32941)
-        - fix: backups codegen (#32936)
-        - fix: oauth regressions (#32937)
-        - feat: web medium tests (#32879)
-        - fix: web worker import (#32877)
-        - fix: remove asset from album doesn't resize the timeline (#32875)
-        - fix: font loading (#32874)
-        - fix(server): keep ocr search text after edits and thumbnail regeneration (#32842)
-        - fix(mobile): show 10-bit heic and avif originals on ios (#32841)
-        - chore: version v3.4.0-rc.1
-        - feat: futo backups 1.12.1 with restic's parallel scan (#32836)
-        - fix(ci): release notes script (#32837)
-        - fix(server): single library exclusion matcher (#32834)
-        - fix(server): keep user motion files on embedded motion replace (#32833)
-        - fix(server): live photo match library (#32832)
-        - fix(server): compress database backups on 75% of the cores, up to 32 (#32828)
-        - fix: breaking changes (#32826)
-        - chore: version v3.4.0-rc.0
-        - chore(web): update translations (#32256)
-packaged_at: 2026-11-11T11:34:58.828110326Z
+        Upstream 3.4.1 (since 3.4.0)
+        - chore: version v3.4.1
+        - feat: futo backups 1.16.0 (#33217)
+        - fix: prometheus exporter should listen on all interfaces (#33209)
+        - fix: workflow step fields default values (#33212)
+        - fix: filename element on detail panel (#33208)
+        - fix(web): highlight advanced search filters with camera filters set (#33200)
+        - fix(web): info panel filename alignment (#33187)
+        - fix(server): queue job status query (#33185)
+        - perf(server): shared links cover query (#33186)
+        - fix(server): map .hif to image/heif (#33172)
+packaged_at: 2026-11-12T11:53:19.935828608Z
 reviews:
     - id: 20112
       source:
@@ -163,7 +123,7 @@ reviews:
       fingerprint: sha256:1933213ceab1879a44c64070511c14f7af99dfb9ab5e8fe19b47dea79707834e
       application_version: 3.4.0
       lpk_sha256: 16871cf2eff4f6de8546f38716c0ef952b1b7e6bbce459768eafb47ede381a9c
-      status: waiting
+      status: approved
       created_at: 2026-11-11T11:35:17.005Z
       submitted_at: 2026-11-11T11:35:17.132629856Z
-      checked_at: 2026-11-11T11:35:17.132630498Z
+      checked_at: 2026-11-12T11:46:31.21531171Z

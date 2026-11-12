@@ -11,8 +11,8 @@ application:
     - /=http://immich.dev.libr.immich.lzcapp:2283/
 services:
   immich:
-    # upstream: ghcr.io/immich-app/immich-server:v3.4.0@sha256:8656fe4c1d096ff5de233082e0620b5aa6a921cff6d33505c9dde4a01a767b5e
-    image: registry.lazycat.cloud/peter/immich-app/immich-server:1d5525fa8ecb77ae
+    # upstream: ghcr.io/immich-app/immich-server:v3.4.1@sha256:4351dd621899ecc8ed317ae87cdcaeb968ec8ba4f9d8053d913a73eb6f6dd7c2
+    image: registry.lazycat.cloud/peter/immich-app/immich-server:258f0488e7387357
     environment:
       - TZ=Asia/Shanghai
       - DB_HOSTNAME=postgres.dev.libr.immich.lzcapp
@@ -24,8 +24,8 @@ services:
     binds:
       - /lzcapp/var/photos:/data
   machine-learning:
-    # upstream: ghcr.io/immich-app/immich-machine-learning:v3.4.0@sha256:0de2115c899b8c28a4348860c6ea0d24b7bb4622c85dec4f42481ec7d866e98b
-    image: registry.lazycat.cloud/peter/immich-app/immich-machine-learning:7486e485a25c0b35
+    # upstream: ghcr.io/immich-app/immich-machine-learning:v3.4.1@sha256:0fd58356ac250e2fc306f89a56a431181d708677d63ba2867c8b205484856652
+    image: registry.lazycat.cloud/peter/immich-app/immich-machine-learning:000de7a937afb77d
     environment:
       - MACHINE_LEARNING_WORKERS=1
       - MACHINE_LEARNING_WORKER_TIMEOUT=120
