@@ -137,7 +137,7 @@ reviews:
       fingerprint: sha256:778c5e77b88c7f6b42ecb778df7f3c42c802fb6fd406ea1009ac6c4354f067e7
       application_version: 3.4.1
       lpk_sha256: d551cea880e15a6a58a3c425a1379ab8aedea3afbace645d251f8a7644453c27
-      status: waiting
+      status: approved
       created_at: 2026-11-12T11:53:43.841Z
       submitted_at: 2026-11-12T11:53:43.963945578Z
-      checked_at: 2026-11-12T11:53:43.963946149Z
+      checked_at: 2026-11-13T11:29:10.9776582Z
